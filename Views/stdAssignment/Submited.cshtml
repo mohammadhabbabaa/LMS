@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Kurs.Models.StudentAssignment>
+
+@{
+    ViewBag.Title = "Submited";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<div class="container-fluid mt--6">
+    <div class="row" dir="rtl">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-xl-4  col-md-6">
+                <div class="card card-profile">
+                    <img src="~/Content/PDF.png"  alt="Image placeholder" class="">
+
+
+                    <div class="card-body pt-0">
+
+                        <div class="text-center">
+                         
+                         
+                                <div class="h5 mt-4">
+                                    <i class="ni business_briefcase-24 mr-2">الوظيفة </i> : @item.Assignment.Title
+
+
+                                    <i class="ni business_briefcase-24 mr-2">العلامة</i> : @item.Grade
+
+                                </div>
+                                <div class="h5 mt-4">
+                                    <i class="ni education_hat mr-2">  الدرس</i> : @item.Cours.Name
+
+                                    <i class="ni education_hat mr-2">  الصف</i> : @item.Class.Name
+                                </div>
+                                <div class="h5 mt-4">
+                                    <a class="btn btn-default" href="@item.PDF" download=""> تنزيل الوظيفة</a>
+                                </div>
+
+                          
+</div>
+                    </div>
+                </div>
+                <!-- Progress track -->
+
+            </div>
+        }
+
+    </div>
+    <!-- Footer -->
+
+</div>

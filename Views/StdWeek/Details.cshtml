@@ -1,0 +1,75 @@
+﻿@model Kurs.Models.TeachersDate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TeachersDate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StratsAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StratsAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cours.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cours.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Period.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Period.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

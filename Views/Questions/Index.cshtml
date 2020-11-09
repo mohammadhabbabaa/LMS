@@ -1,0 +1,211 @@
+﻿@model IEnumerable<Kurs.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-12 col-12 text-left">
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Create", "Questions" ,new {QuizID=  ViewBag.QuizID  } )">اضافة اسئلة جديدة</a>
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Index", "Quizs" ,new {coursID=ViewBag.CoursID  ,classID=ViewBag.ClassID   } )">الرجوع الى صفحة الامتحانات</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col" style="direction: rtl;">
+
+
+
+
+            <div class="card">
+
+
+
+
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0 color">اسئلة الامتحان</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                        
+
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+                                <th>
+                                    الامتحان
+                                </th>
+                                <th>
+                                    صورة السؤال
+                                </th>
+
+                                <th>
+                                    جواب السؤال
+                                </th>
+                                <th>
+                                    علامة السؤال
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quiz.Title)
+                                </td>
+                                <td>
+                                    <a href="./@item.Image"  target="_blank" >
+
+                                        <img src="@item.Image" style="max-height:60px" />
+                                    </a>
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RightAnswer)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Puan)
+                                </td>
+
+
+
+                                <td class="text-left">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="@Url.Action("Edit", "Questions", new {id = item.ID } )">تعديل</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" onClick="DeletePopup(@item.ID)"> ازالة </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="direction:rtl;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">هل تريد تأكيد الحذف</h6>
+
+                    </div>
+                    <div class="modal-body" id="myModalTitle">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="DeleteRestorant" onclick="delte()" class="btn btn-primary">نعم متأكد</a>
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">لا أغلق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+    function DeletePopup(id) {
+        $('#myModalTitle').html("هل تريد تأكيد الحذف ! ");
+        var url = '@Url.Action("Delete", "Questions")';
+        document.getElementById("DeleteRestorant").href = url+"/"+id;
+
+
+        $('#modal-default').modal('show');
+
+    }
+
+
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="~/Content/notify.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+@if (TempData["success"] != null)
+{
+
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'تمت العملية بنجاح',
+                message: '.'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'success'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}
+
+@if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'حدث خطاء',
+                message: 'يرجى تكرار العميلة .'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'danger'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}

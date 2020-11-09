@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08f81e0015484d1f9c354138b60e44c5" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="KursModel.Assignment" Width="1.5" PointX="5.25" PointY="14.875" />
+        <EntityTypeShape EntityType="KursModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KursModel.Class" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="KursModel.Cours" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="KursModel.LiveCours" Width="1.5" PointX="5.25" PointY="23.375" />
+        <EntityTypeShape EntityType="KursModel.Note" Width="1.5" PointX="8.25" PointY="24.5" />
+        <EntityTypeShape EntityType="KursModel.Notification" Width="1.5" PointX="5.25" PointY="19.375" />
+        <EntityTypeShape EntityType="KursModel.Period" Width="1.5" PointX="6" PointY="27.75" />
+        <EntityTypeShape EntityType="KursModel.Question" Width="1.5" PointX="13.5" PointY="15.5" />
+        <EntityTypeShape EntityType="KursModel.Quiz" Width="1.5" PointX="11.25" PointY="14.625" />
+        <EntityTypeShape EntityType="KursModel.ResetPassword" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KursModel.Role" Width="1.5" PointX="0.75" PointY="17.125" />
+        <EntityTypeShape EntityType="KursModel.StudentAssignment" Width="1.5" PointX="13.5" PointY="18.75" />
+        <EntityTypeShape EntityType="KursModel.StudentClass" Width="1.5" PointX="8.25" PointY="20" />
+        <EntityTypeShape EntityType="KursModel.StudentQuiz" Width="1.5" PointX="15.75" PointY="18.125" />
+        <EntityTypeShape EntityType="KursModel.TeachersDate" Width="1.5" PointX="11.25" PointY="20" />
+        <EntityTypeShape EntityType="KursModel.User" Width="1.5" PointX="3" PointY="18.75" />
+        <EntityTypeShape EntityType="KursModel.Video" Width="1.5" PointX="8.25" PointY="16.25" />
+        <AssociationConnector Association="KursModel.FK_Assignments_Classes" />
+        <AssociationConnector Association="KursModel.FK_Assignments_Courses" />
+        <AssociationConnector Association="KursModel.FK_Assignments_Users" />
+        <AssociationConnector Association="KursModel.FK_StudentAssignments_Assignments" />
+        <AssociationConnector Association="KursModel.FK_LiveCourses_Classes" />
+        <AssociationConnector Association="KursModel.FK_Quiz_Classes" />
+        <AssociationConnector Association="KursModel.FK_StudentAssignments_Classes" />
+        <AssociationConnector Association="KursModel.FK_StudentClasses_Classes" />
+        <AssociationConnector Association="KursModel.FK_TeachersDates_Classes" />
+        <AssociationConnector Association="KursModel.FK_Videos_Classes" />
+        <AssociationConnector Association="KursModel.FK_LiveCourses_Courses" />
+        <AssociationConnector Association="KursModel.FK_Notes_Courses" />
+        <AssociationConnector Association="KursModel.FK_Notification_Courses" />
+        <AssociationConnector Association="KursModel.FK_Quiz_Courses" />
+        <AssociationConnector Association="KursModel.FK_StudentAssignments_Courses" />
+        <AssociationConnector Association="KursModel.FK_StudentClasses_Courses" />
+        <AssociationConnector Association="KursModel.FK_TeachersDates_Courses" />
+        <AssociationConnector Association="KursModel.FK_Videos_Courses" />
+        <AssociationConnector Association="KursModel.FK_LiveCourses_Users" />
+        <AssociationConnector Association="KursModel.FK_Notes_Quiz" />
+        <AssociationConnector Association="KursModel.FK_Notes_Users" />
+        <AssociationConnector Association="KursModel.FK_Notification_Roles" />
+        <AssociationConnector Association="KursModel.FK_Notification_Users2" />
+        <AssociationConnector Association="KursModel.FK_StudentClasses_Period" />
+        <AssociationConnector Association="KursModel.FK_TeachersDates_Period" />
+        <AssociationConnector Association="KursModel.FK_Questions_Quiz" />
+        <AssociationConnector Association="KursModel.FK_StudentQuizs_Questions" />
+        <AssociationConnector Association="KursModel.FK_Quiz_Users" />
+        <AssociationConnector Association="KursModel.FK_StudentQuizs_Quiz" />
+        <AssociationConnector Association="KursModel.FK_Users_Roles" />
+        <AssociationConnector Association="KursModel.FK_StudentAssignments_Users" />
+        <AssociationConnector Association="KursModel.FK_StudentAssignments_Users1" />
+        <AssociationConnector Association="KursModel.FK_StudentClasses_Users" />
+        <AssociationConnector Association="KursModel.FK_StudentClasses_Users1" />
+        <AssociationConnector Association="KursModel.FK_StudentQuizs_Users" />
+        <AssociationConnector Association="KursModel.FK_TeachersDates_Users" />
+        <AssociationConnector Association="KursModel.FK_Videos_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

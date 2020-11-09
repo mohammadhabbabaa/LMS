@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Kurs.Models.StudentQuiz>
+
+@{
+    ViewBag.Title = "ExmFinish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+         
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card-wrapper">
+                <!-- Custom form validation -->
+                <div class="card" style="direction:rtl">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3>انهاء الامتحان</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+
+                        @{ double NewPuan = 0;}
+                        @foreach (var item in Model)
+                        {
+                            if (item.Answer == item.RightAnswer)
+                            {
+                                NewPuan = NewPuan + int.Parse(item.Puan.ToString());
+                            }
+
+                        }
+
+                        <form action="@Url.Action("Finish","StdStudentAnswares",new { quizID=ViewBag.QuizID})" method="post">
+                            
+                            <input type="text" name="QuizID" value="@ViewBag.QuizID" style="display:none" />
+                            <input type="text" name="StudentID" value="@ViewBag.StudentID"style="display:none" />
+                            <input type="text" name="Note1" value="@NewPuan"style="display:none" />
+                            <input type="submit"  class="btn btn-default" value="انهاء الامتحان" />
+
+
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

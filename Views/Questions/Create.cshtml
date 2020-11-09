@@ -1,0 +1,320 @@
+﻿@model Kurs.Models.Question
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+
+
+
+
+    .demoInputBox {
+        padding: 5px;
+        border: #F0F0F0 1px solid;
+        border-radius: 4px;
+        background-color: #FFF;
+    }
+
+    #progress-bar {
+        background-color: #12CC1A;
+        height: 20px;
+        color: #FFFFFF;
+        width: 0%;
+        -webkit-transition: width .3s;
+        -moz-transition: width .3s;
+        transition: width .3s;
+    }
+
+
+
+    #progress-div {
+        border: 1px solid #0fa015;
+        border-radius: 4px;
+        margin: -35px 2px 7px 295px;
+        padding: 5px 0;
+        text-align: center;
+        width: 277px;
+    }
+
+    #targetLayer {
+        width: 100%;
+        text-align: center;
+    }
+</style>
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card-wrapper">
+                <!-- Custom form validation -->
+                <div class="card" style="direction:rtl">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0"> اضافة الاسئلة</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                             
+                                
+                                
+                                
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RightAnswer,"اختر الاجابة الصحيحة", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+
+                                        <select name="RightAnswer" class="form-control">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Puan, "علامة السؤال من مئة", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Puan, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Puan, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.QuizID, "QuizID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+
+
+                                        <input type="text" class="form-control" name="QuizID" value="@ViewBag.QuizID" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <div class="col-md-10">
+                                        <label>صورة السؤال :</label>
+
+                                        <img id="uploadPreview" style="width:200px; height: 200px; display:none" />
+                                        <input id="fileInput" style="display:none;" type="file" name="ImageFile" class="form-control" onchange="PreviewImage();" />
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-12">
+                                        <center>
+                                            <button type="button" onclick="clickme()" class="btn btn-default "> اضغط هنا لتحميل صورة السؤال</button>
+
+
+                                            <input type="submit" value="اضافة السؤال " class="btn btn-slack " />
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="direction:rtl;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default"></h6>
+
+                    </div>
+                    <div class="modal-body" id="myModalTitle">
+                        <!-- Progress bar -->
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div id="uploadStatus"></div>
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal"> الاستمرار بالاضافة</button>
+                        <a class="btn btn-default " href="@Url.Action("Index","Questions",new {QuizID =ViewBag.QuizID })"> الانتقال الى صفحة المتحان</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // File upload via Ajax
+        $("#uploadForm").on('submit', function (e) {
+            $('#modal-default').modal('show');
+            e.preventDefault();
+            $.ajax({
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = ((evt.loaded / evt.total) * 100);
+                            $(".progress-bar").width(percentComplete + '%');
+                            $(".progress-bar").html(percentComplete + '%');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                type: 'POST',
+                url: '@Url.Action("Create", "Questions")',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $(".progress-bar").width('0%');
+
+                },
+                error: function () {
+                    $(function () {
+                        $.notify({
+                            title: 'حدث خطاء',
+                            message: ' يرجى رفع صورة السؤال .'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'danger'
+                            });
+
+                        // Click on the checkbox
+                    });
+
+                },
+                success: function () {
+
+                    $('#uploadForm')[0].reset();
+                    document.getElementById("uploadPreview").style.display = "none";
+                    $(function () {
+                        $.notify({
+                            title: 'تمت العملية بنجاح',
+                            message: '.'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'success'
+                            });
+
+                        // Click on the checkbox
+                    });
+
+                    $('#modal-default').modal('hide');
+
+                }
+            });
+        });
+
+        // File type validation
+        $("#fileInput").change(function () {
+            var allowedTypes = ['application/vnd.ms-office', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'video/mp4', 'image/jpg', 'image/gif'];
+            var file = this.files[0];
+            var fileType = file.type;
+            if (!allowedTypes.includes(fileType)) {
+                alert('Please select a valid file (JPEG/JPG/PNG).');
+                $("#fileInput").val('');
+                return false;
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button class="btn btn-success hidden" style="display:none;" data-toggle="notify" id="success" data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">Success</button>
+
+<button class="btn btn-warning hidden" style="display:none;" id="error" data-toggle="sweet-alert" data-sweet-alert="warning">Warning alert</button>
+
+
+
+<script type="text/javascript">
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("fileInput").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+            document.getElementById("uploadPreview").style.display = "block";
+
+        };
+    };
+
+</script>
+<script type="text/javascript">
+
+    function clickme() {
+        document.getElementById("fileInput").click();
+    };
+
+</script>
+
+
+

@@ -1,0 +1,188 @@
+﻿@model Kurs.Models.StudentQuiz
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card-wrapper">
+                <!-- Custom form validation -->
+                <div class="card" style="direction:rtl">
+                    <!-- Card header -->
+                    <div class="card-header">
+                  
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                          
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.StudentID, "StudentID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                       
+                                  <input type="text" name="StudentID" value="@ViewBag.StudentID" />
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    السؤال
+                                    <div class="col-md-10">
+                                        <center>
+                                            <img src="@ViewBag.Image" class="card-img-top" style="max-width:500px" />
+                                        </center>
+                                            </div>
+                                   
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.QuizID, "QuizID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <input type="text" name="QuizID" value="@ViewBag.QuizID" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.QustionID, "QustionID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <input type="text" name="QustionID" value="@ViewBag.QustionID" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                الجواب
+                                    <div class="col-md-10">
+                                    
+                                    
+                                   
+                                            
+                                                <ul class="list-group list-group-flush" data-toggle="checklist">
+                                                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
+                                                       
+                                                          
+                                                            <div>
+                                                                <div class="custom-control custom-checkbox custom-checkbox-success">
+                                                                    <input class="custom-control-input" name="Answer" value="A" id="chk-todo-task-1" type="radio">
+                                                                    <label class="custom-control-label" for="chk-todo-task-1">A</label>
+                                                                </div>
+                                                            </div>
+                                                   
+                                                    </li>    
+                                                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
+                                                       
+                                                          
+                                                            <div>
+                                                                <div class="custom-control custom-checkbox custom-checkbox-success">
+                                                                    <input class="custom-control-input"name="Answer"  value="B"  id="chk-todo-task-2" type="radio">
+                                                                    <label class="custom-control-label" for="chk-todo-task-2">B</label>
+                                                                </div>
+                                                            </div>
+                                                   
+                                                    </li>      <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
+                                                       
+                                                          
+                                                            <div>
+                                                                <div class="custom-control custom-checkbox custom-checkbox-success">
+                                                                    <input class="custom-control-input"name="Answer"  value="C"  id="chk-todo-task-3" type="radio">
+                                                                    <label class="custom-control-label" for="chk-todo-task-3">C</label>
+                                                                </div>
+                                                            </div>
+                                                   
+                                                    </li>  
+                                                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
+                                                       
+                                                          
+                                                            <div>
+                                                                <div class="custom-control custom-checkbox custom-checkbox-success">
+                                                                    <input class="custom-control-input" name="Answer"  value="D"  id="chk-todo-task-4" type="radio">
+                                                                    <label class="custom-control-label" for="chk-todo-task-4">D</label>
+                                                                </div>
+                                                            </div>
+                                                   
+                                                    </li>   
+                                                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
+                                                       
+                                                          
+                                                            <div>
+                                                                <div class="custom-control custom-checkbox custom-checkbox-success">
+                                                                    <input class="custom-control-input" name="Answer"  value="E"  id="chk-todo-task-5" type="radio">
+                                                                    <label class="custom-control-label" for="chk-todo-task-5">E</label>
+                                                                </div>
+                                                            </div>
+                                                   
+                                                    </li>
+                                                    
+                                                </ul>
+                                       
+                                
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.Puan, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                      
+                                        <input type="text" name="Puan" value="@ViewBag.Puan" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.RightAnswer, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <input type="text" name="RightAnswer" value="@ViewBag.RightAnswer" />
+                                 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+
+
+
+                                        <input type="submit" value="التالي" class="btn btn-default" />
+                                        @if (ViewBag.Prevquestion!=null)
+                                        {
+                                            <a href="@Url.Action("Create","StdStudentAnswares",new { QuizID=ViewBag.QuizID, QustionID =ViewBag.Prevquestion })" class="btn btn-default">السابق</a>
+
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

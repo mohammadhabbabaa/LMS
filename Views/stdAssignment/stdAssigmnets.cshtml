@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Kurs.Models.StudentAssignment>
+
+@{
+    ViewBag.Title = "stdAssigmnets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>stdAssigmnets</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PDF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeriodID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cours.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PDF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeriodID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assignment.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cours.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

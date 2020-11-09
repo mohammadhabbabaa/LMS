@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Kurs.Models.StudentQuiz>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+         
+                <div class="col-lg-12 col-12 text-left">
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Index", "studentsGrades" ,new {coursID=ViewBag.CoursID ,classID=ViewBag.ClassID,QuizID=ViewBag.QuizID } )">الرجوع الى علامات الطلاب</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col" style="direction: rtl;">
+
+
+
+
+            <div class="card">
+
+
+
+
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0 color">اجوبة الطالب</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" > </th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+
+
+
+                                <th>
+                        السؤال 
+                                </th>
+                                <th>
+                      الامتحان
+                                </th>
+                                <th>
+                                  الطالب
+                                </th>
+                                <th>
+                                 جواب الطالب
+                                </th>
+                                <th>
+                                 الجواب الصحيح
+                                </th>
+                                <th>
+                                  علامة السؤال
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                <img src="@item.Question.Image" alt="no Image" style="max-height:100px" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quiz.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Answer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RightAnswer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Puan)
+                                </td>
+                                <td>
+                                
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="~/Content/notify.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

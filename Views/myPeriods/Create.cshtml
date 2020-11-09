@@ -1,0 +1,164 @@
+﻿@model Kurs.Models.Period
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+
+
+
+
+
+
+            <div class="card-wrapper">
+                <!-- Custom form validation -->
+                <div class="card" style="direction:rtl">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0"> اضاف فصل جديد</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                         
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name,"اسم الفصل", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EndDate,"وقت انتهاء الفصل",htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @Value = DateTime.Now.ToString() } })
+                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div class="col-md-4">
+    <button type="button" style="display:none" class="btn btn-block btn-primary mb-3" data-toggle="modal" id="myCheck" data-target="#modal-default"> </button>
+    <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="modal-title-default">تم الاضافة بنجاح</h6>
+
+                </div>
+                <div class="modal-body">
+                    هل تريد الاستمرار بالاضافة ؟
+                </div>
+                <div class="modal-footer">
+                    <a href="@Url.Action("Index", "Teachers")" class="btn  btn-primary"> لا الرجوع الى صفحة المعلمين</a>
+                    <a class="btn btn-primary" data-dismiss="modal">نعم </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-success hidden" style="display:none;" data-toggle="notify" id="success" data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">Success</button>
+
+<button class="btn btn-warning hidden" style="display:none;" id="error" data-toggle="sweet-alert" data-sweet-alert="warning">Warning alert</button>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@if (TempData["success"] != null)
+{
+
+    <script type="text/javascript">
+        $(function () {
+            document.getElementById("myCheck").click();
+
+
+            // Click on the checkbox
+        });
+    </script>
+}
+@if (TempData["error"] != null)
+{
+
+
+    <script type="text/javascript">
+        $(function () {
+            $.notify(TempData["error"], "danger"); // Click on the checkbox
+        });
+    </script>
+}
+
+
+
+
+@if (ViewData["success"] != null)
+{
+    <div class="alert alert-success">@ViewData["success"]</div>
+}
+
+@if (ViewData["error"] != null)
+{
+    <div class="alert alert-error">@ViewData["error"]</div>
+}
+
+
+
+<script src="~/Content/popper.min.js">
+
+</script>
+
+<script src="~/Content/mdb.min.js">
+
+</script>
+<script src="~/Content/compiled-addons.min.js">
+
+</script>
+<script>
+
+</script>
+<script>
+    function str() {
+        document.getElementById("str").click();
+    }
+    function end() {
+        document.getElementById("end").click();
+    }
+</script>
+<div class="hiddendiv common"></div>

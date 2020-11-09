@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Kurs.Models.Notification>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-12 col-12 text-left">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+
+
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0">استعلامات جديدة</h3>
+                </div>
+                <div class="card-body">
+                    <div class="timeline timeline-one-side" data-timeline-content="axis" data-timeline-axis-style="dashed">
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="timeline-block">
+                                <span class="timeline-step badge-success">
+                                    <i class="ni ni-bell-55"></i>
+                                </span>
+                                <div class="timeline-content">
+
+                                    <h5 class=" mt-3 mb-0">  @item.Title</h5>
+                                    <p class=" text-sm mt-1 mb-0">  @item.Description</p>
+                                    <div class="mt-3">
+                                        <span class="badge badge-pill badge-danger">@item.Cours.Name</span>
+                                        <span class="badge badge-pill badge-success">@item.User.Name</span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        }
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+</div>

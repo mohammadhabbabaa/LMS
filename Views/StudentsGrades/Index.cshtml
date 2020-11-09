@@ -1,0 +1,354 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Kurs.Models.Note>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-6 text-left">
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Index", "Quizs" ,new {coursID=ViewBag.CourseID  ,classID=ViewBag.classID   } )">الرجوع الى صفحة الامتحانات</a>
+
+
+                </div>
+
+
+
+
+
+                <div class="col-lg-6 col-6 ">
+                    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <!-- Search form -->
+                                <form class="navbar-search navbar-search-light form-inline mr-sm-3" method="get" id="navbar-search-main">
+
+                                    <input style="display:none" value="@ViewBag.CourseID" name="coursID" type="text">
+                                    <input style="display:none" value="@ViewBag.classID" name="classID" type="text">
+                                    <input style="display:none" value="@ViewBag.QuizID" name="QuizID" type="text">
+
+                                    <div class="form-group mb-0">
+                                        <div class="input-group input-group-alternative input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            </div>
+                                            <input class="form-control" name="search" placeholder="بحث حسب  الاسم" type="text">
+
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <input style="display:none" type="submit" />
+                                </form>
+
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col" style="direction: rtl;">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0 color">الطلاب</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> </th>
+                                <th> </th>
+                                <th>  </th>
+                                <th> </th>
+                                <th> </th>
+                                <th> </th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+                                <th>
+                                    اسم الدرس
+                                </th>
+                                <th>
+                                    الامتحان
+                                </th>
+
+                                <th>
+                                    الطالب
+                                </th>
+
+                                <th>
+                                    العلامة
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cours.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quiz.Title)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Note1)
+                                </td>
+                                <td class="text-left">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" onclick="addGrade(@item.ID)">تعديل العلامة</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index","StudentQuizAnswares", new { stdID=item.StudentID ,QuizID=item.QuizID})" >اجوبة الطالب</a>
+
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+                <div class="card-footer py-4">
+                    <nav aria-label="...">
+
+
+
+                        <ul class="pagination justify-content-end mb-0">
+                            @for (int i = 1; i < Model.PageCount + 1; i++)
+                            {
+                                if (Model.PageNumber == i)
+                                {
+                                    <li class="page-item active">
+                                        <a href="@Url.Action("Index", "StudentsGrades", new {coursID=ViewBag.CourseID,QuizID= ViewBag.QuizID ,classID= ViewBag.classID, page = i })" class="page-link">@i</a>
+                                    </li>
+
+
+                                }
+                                else
+                                {
+                                    <li class="page-item ">
+                                        <a href="@Url.Action("Index", "StudentsGrades", new {coursID=ViewBag.CourseID,QuizID= ViewBag.QuizID ,classID= ViewBag.classID, page = i })" class="page-link">@i</a>
+                                    </li>
+                                }
+
+                            }
+
+
+                        </ul>
+
+                    </nav>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="direction:rtl;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default"> تعديل العلامة</h6>
+
+                    </div>
+                    <form id="uploadForm" method="post">
+                        <div class="modal-body" id="myModalTitle" style="background-color: darkslategrey;">
+
+                            <div class="form-group mb-3">
+
+
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="Note1" value="" />
+                                    </div>
+                                </div>
+                                <input type="text" style="display:none" name="ID" id="QuizID" value="" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary" value="اضف العلامة" />
+                            <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal"> أغلق</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+
+    function addGrade(ID) {
+
+        document.getElementById("QuizID").value = ID;
+
+
+        $('#modal-default').modal('show');
+
+    }
+
+
+
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="~/Content/notify.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // File upload via Ajax
+        $("#uploadForm").on('submit', function (e) {
+            $('#modal-default').modal('show');
+            e.preventDefault();
+            $.ajax({
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = ((evt.loaded / evt.total) * 100);
+                            $(".progress-bar").width(percentComplete + '%');
+                            $(".progress-bar").html(percentComplete + '%');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                type: 'POST',
+                url: '@Url.Action("CreateGrade", "StudentsGrades")',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $(".progress-bar").width('0%');
+
+                },
+                error: function () {
+                    $(function () {
+                        $.notify({
+                            title: 'حدث خطاء',
+                            message: 'يرجى تكرار العميلة .'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'danger'
+                            });
+
+                        // Click on the checkbox
+                    });
+
+                },
+                success: function () {
+
+                    $('#uploadForm')[0].reset();
+
+                    $(function () {
+                        $.notify({
+                            title: 'تمت العملية بنجاح',
+                            message: '.'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'success'
+                            });
+
+                        // Click on the checkbox
+                    });
+                    location.reload();
+
+                }
+            });
+        });
+
+        // File type validation
+        $("#fileInput").change(function () {
+            var allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.ms-office', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'video/mp4', 'image/jpg', 'image/gif'];
+            var file = this.files[0];
+            var fileType = file.type;
+            if (!allowedTypes.includes(fileType)) {
+                alert('Please select a valid file (PDF/DOC/DOCX/JPEG/JPG/PNG/GIF/mp4).');
+                $("#fileInput").val('');
+                return false;
+            }
+        });
+    });
+</script>
+
+

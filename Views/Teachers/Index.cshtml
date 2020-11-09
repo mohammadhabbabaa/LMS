@@ -1,0 +1,285 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Kurs.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-6 text-left">
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Create", "Teachers")">أضف استاذ جديد</a>
+                </div>
+                <div class="col-lg-6 col-6 ">
+                    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <!-- Search form -->
+                                <form class="navbar-search navbar-search-light form-inline mr-sm-3" method="get" id="navbar-search-main">
+                                    <div class="form-group mb-0">
+                                        <div class="input-group input-group-alternative input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            </div>
+                                            <input class="form-control" name="search" placeholder="بحث حسب  الاسم" type="text">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col" style="direction: rtl;">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0 color">المعلمين</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> </th>
+                                <th> </th>
+                                <th>  </th>
+                                <th> </th>
+                                <th> </th>
+                                <th>  </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+
+                            <tr>
+                                <th> الاسم</th>
+                                <th> الايميل</th>
+                                <th> تاريخ الميلاد</th>
+                                <th> العنوان</th>
+                                <th> التلفون</th>
+                                <th> تايخ الانضمام</th>
+                                <th></th>
+
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Emial)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Birthday)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Registeration)
+                                    </td>
+
+                                    <td class="text-left">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="@Url.Action("Edit", "Teachers", new { id = item.ID })">تعديل</a>
+
+                                                <a class="dropdown-item" href="#" data-toggle="modal" onClick="DeletePopup(@item.ID)"> ازالة </a>
+                                                <a class="dropdown-item" href="@Url.Action("Index", "TeachersDates", new { id = item.ID })">ساعات عمل المعلم</a>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+                <div class="card-footer py-4">
+                    <nav aria-label="...">
+
+
+
+                        <ul class="pagination justify-content-end mb-0">
+                            @for (int i = 1; i < Model.PageCount + 1; i++)
+                            {
+                                if (Model.PageNumber == i)
+                                {
+                                    <li class="page-item active">
+                                        <a href="@Url.Action("Index", "Teachers", new { page = i })" class="page-link">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item ">
+                                        <a href="@Url.Action("Index", "Teachers", new { page = i })" class="page-link">@i</a>
+                                    </li>
+                                }
+
+                            }
+
+
+                        </ul>
+
+                    </nav>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="direction:rtl;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">هل تريد تأكيد الحذف</h6>
+
+                    </div>
+                    <div class="modal-body" id="myModalTitle">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="DeleteRestorant" onclick="delte()" class="btn btn-primary">نعم متأكد</a>
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">لا أغلق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+    function DeletePopup(id) {
+        $('#myModalTitle').html("هل تريد تأكيد الحذف ! ");
+        var url = '@Url.Action("Delete", "Teachers")';
+        document.getElementById("DeleteRestorant").href = url+"/"+id;
+
+
+        $('#modal-default').modal('show');
+
+    }
+
+
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="~/Content/notify.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+@if (TempData["success"] != null)
+{
+
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'تمت العملية بنجاح',
+                message: '.'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'success'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}
+
+@if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'حدث خطاء',
+                message: 'يرجى تكرار العميلة .'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'danger'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}

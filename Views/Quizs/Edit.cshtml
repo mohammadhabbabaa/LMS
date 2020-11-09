@@ -1,0 +1,197 @@
+﻿@model Kurs.Models.Quiz
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/mdb.min.css" type="text/css">
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card-wrapper">
+                <!-- Custom form validation -->
+                <div class="card" style="direction:rtl">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0"> تعديل مدة الامتحان </h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.ID)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Title,"اسم الامتحان" , htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.CourseID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CourseID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.ClassID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ClassID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                    @Html.LabelFor(model => model.TeacherID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.TeacherID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.TeacherID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Date, "تاريخ الامتحان", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @Value = Model.Date } })
+                                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">يبدأ الامتحان في الساعة</label>
+                                    <div class=" input-with-post-icon timepicker col-md-10" twelvehour="true">
+                                        <input type="text" id="light-version-examples" value="@Model.StratHour" name="StratHour" onclick="str()" class="form-control" placeholder="يبدأ الدرس في الساعة">
+                                        <i class="fas fa-envelope input-prefix" tabindex="0" id="str" style="display:none" aria-haspopup="true"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">ينتهي الامتحان في الساعة</label>
+
+                                    <div class=" input-with-post-icon timepicker col-md-10" twelvehour="true">
+                                        <input type="text" id="light-version-examples" value="@Model.EndHour" name="EndHour" onclick="end()" class="form-control" placeholder="ينتهي الدرس في الساعة">
+                                        <i class="fas fa-envelope input-prefix" tabindex="0" id="end" style="display:none" aria-haspopup="true"></i>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="حفظ" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<button class="btn btn-success hidden" style="display:none;" data-toggle="notify" id="success" data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">Success</button>
+
+<button class="btn btn-warning hidden" style="display:none;" id="error" data-toggle="sweet-alert" data-sweet-alert="warning">Warning alert</button>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@if (TempData["success"] != null)
+{
+
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'تمت العملية بنجاح',
+                message: '.'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'success'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}
+
+@if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+        $(function () {
+            $.notify({
+                title: 'حدث خطاء',
+                message: 'يرجى تكرار العميلة .'
+
+            }, {
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                    type: 'danger'
+                });
+
+            // Click on the checkbox
+        });
+    </script>
+}
+
+
+
+<script src="~/Content/popper.min.js">
+
+</script>
+
+<script src="~/Content/mdb.min.js">
+
+</script>
+<script src="~/Content/compiled-addons.min.js">
+
+</script>
+<script>
+
+</script>
+<script>
+    function str() {
+        document.getElementById("str").click();
+    }
+    function end() {
+        document.getElementById("end").click();
+    }
+</script>
+<div class="hiddendiv common"></div>

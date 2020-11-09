@@ -1,0 +1,300 @@
+﻿@model IEnumerable<Kurs.Models.Assignment>
+
+@{
+    ViewBag.Title = "Iasdndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-12 col-12 text-left">
+                 
+                 
+
+                    <a class="btn btn-sm btn-neutral" href="@Url.Action("Submited", "stdAssignment",new { classID =ViewBag.classID, courseID= ViewBag.courseID,  TeacherID=ViewBag.TeacherID })">وظائفي</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col" style="direction: rtl;">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0 color">الوظائف</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+
+
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+
+                                <th>
+                                    الصف
+                                </th>
+                                <th>
+                                    الدرس
+                                </th>
+                                <th>
+                                    الاستاذ
+                                </th>
+                                <th>
+                                    الوظيفة
+                                </th>
+                                <th>
+                                    الشرح
+                                </th>
+
+                                <th>
+                                    اخر وقت للتسليم
+                                </th>
+
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Class.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cours.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+
+                                    <td>
+                                        @Functions.ChangeTime(item.EndDate.Value, 23, 59, 0, 0)
+                                    </td>
+
+
+                                    <td class="text-left">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            
+                                                <a class="dropdown-item" onclick="addHomeWork(@item.TeacherID,@item.ClassID,@item.CourseID,@item.ID,@ViewBag.Studentid)">اضافة او تعديل الوظيفة</a>
+                                                <a class="dropdown-item" href="@item.PDF" download="">تنزيل الوظيفة</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="direction:rtl;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">الرجاء اضافة الوظيفة</h6>
+
+                    </div>
+                    <form id="uploadForm" method="post">
+                        <div class="modal-body" id="myModalTitle" >
+
+                            <div class="form-group mb-3" style="display:none">
+
+
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="TeacherID" id="TeacherID" value="" />
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="ClassID" id="ClassID" value="" />
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="CourseID" name="CourseID" value="" />
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="AssignmentID" name="AssignmentID" value="" />
+                                        <input type="text" name="StudentID" id="StudentID" value="" />
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <input type="file" name="ImageFile" id="ImageFile" required="" />
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary" value="اضافة" />
+                            <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal"> أغلق</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+
+    function addHomeWork(TeacherID, ClassID, CourseID, AssignmentID ,StudentID) {
+  
+        document.getElementById("ClassID").value = ClassID;
+        document.getElementById("CourseID").value = CourseID;
+        document.getElementById("TeacherID").value = TeacherID;
+        document.getElementById("StudentID").value = StudentID;
+        document.getElementById("AssignmentID").value = AssignmentID;
+
+
+        $('#modal-default').modal('show');
+
+    }
+
+
+
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="~/Content/notify.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // File upload via Ajax
+        $("#uploadForm").on('submit', function (e) {
+            $('#modal-default').modal('show');
+            e.preventDefault();
+            $.ajax({
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = ((evt.loaded / evt.total) * 100);
+                            $(".progress-bar").width(percentComplete + '%');
+                            $(".progress-bar").html(percentComplete + '%');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                type: 'POST',
+                url: '@Url.Action("CreateAssigment", "stdAssignment")',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $(".progress-bar").width('0%');
+
+                },
+                error: function () {
+                    $(function () {
+                        $.notify({
+                            title: 'حدث خطاء',
+                            message: 'يرجى تكرار العميلة .'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'danger'
+                            });
+
+                        // Click on the checkbox
+                    });
+
+                },
+                success: function () {
+
+                    $('#uploadForm')[0].reset();
+
+                    $(function () {
+                        $.notify({
+                            title: 'تمت العملية بنجاح',
+                            message: '.'
+
+                        }, {
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
+                                type: 'success'
+                            });
+
+                        // Click on the checkbox
+                    });
+                    location.reload();
+
+                }
+            });
+        });
+
+        // File type validation
+        $("#fileInput").change(function () {
+            var allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.ms-office', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'video/mp4', 'image/jpg', 'image/gif'];
+            var file = this.files[0];
+            var fileType = file.type;
+            if (!allowedTypes.includes(fileType)) {
+                alert('Please select a valid file (PDF/DOC/DOCX/JPEG/JPG/PNG/GIF/mp4).');
+                $("#fileInput").val('');
+                return false;
+            }
+        });
+    });
+</script>

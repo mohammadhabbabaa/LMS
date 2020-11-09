@@ -1,0 +1,102 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Kurs.Models.Video>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<div class="container-fluid mt--6">
+    <div class="row" dir="rtl">
+        @{int y = 1;}
+        @foreach (var item in Model)
+        {
+
+            <div class="col-xl-4  col-md-6 ">
+                <div class="card card-profile">
+                    <img src="~/Content/Default/@y .jpg" style="max-height:300px" alt="Image placeholder" class="card-img-top">
+
+
+                    <div class="card-body pt-0">
+
+                        <div class="text-center">
+
+                            <a href="@Url.Action("Display","StdVideos",new {ID =item.ID  })">
+                                <div class="h5 mt-4">
+                                    <i class="ni business_briefcase-24 mr-2"></i>@item.Title
+                                </div>
+                                <div>
+                                    <i class="ni education_hat mr-2"></i>@item.Description
+                                </div>
+                                <div>
+                                    <i class="ni education_hat mr-2"></i>@item.User.Name
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Progress track -->
+
+            </div>
+            y++;
+            if (y==7)
+            {
+                y = 1;
+            }
+        }
+
+    </div>
+    <!-- Footer -->
+    <div class="card-footer py-4">
+     
+   
+            <nav aria-label="...">
+
+
+
+                <ul class="pagination  mb-0 ">
+                    @for (int i = 1; i < Model.PageCount + 1; i++)
+                    {
+                        if (Model.PageNumber == i)
+                        {
+                            <li class="page-item active">
+                                <a href="@Url.Action("Index", "StdVideos", new {  coursID =  ViewBag.coursID , classID = ViewBag.classID,  page =i })" class="page-link">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="page-item ">
+                                <a href="@Url.Action("Index", "StdVideos" , new { coursID =  ViewBag.coursID , classID = ViewBag.classID,  page =i })" class="page-link">@i</a>
+                            </li>
+                        }
+
+                    }
+
+
+                </ul>
+
+            </nav>
+        
+
+</div>
+</div>

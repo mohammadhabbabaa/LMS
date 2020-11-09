@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Kurs.Models.StudentAssignment>
+
+@foreach (var item in Model)
+{
+    <div class="fc-event-container">
+        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+            <div class="fc-content">
+                <span class="fc-title">
+                    @item.Assignment.Title
+
+                </span>
+            </div>
+
+            <div class="fc-content">
+                <span class="fc-title">
+
+                    @item.Grade %
+                </span>
+            </div>
+
+            <div class="fc-content">
+
+            </div>
+            <div class="fc-resizer fc-end-resizer">
+            </div>
+        </a>
+
+    </div>
+}

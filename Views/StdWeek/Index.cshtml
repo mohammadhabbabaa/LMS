@@ -1,0 +1,835 @@
+﻿@model IEnumerable<Kurs.Models.TeachersDate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    iframe#_hjRemoteVarsFrame {
+        display: none !important;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+</style>
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <!-- Fullcalendar -->
+            <div class="card card-calendar">
+                <!-- Card header -->
+                <div class="card-header">
+                    <!-- Title -->
+                    <h5 class="h3 mb-0">الجدول </h5>
+                </div>
+                <!-- Card body -->
+                <div class="card-body p-0">
+
+                    <div class="accordion ShowMobile" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <center>
+                                    <h5 class="mb-0">الاحد</h5>
+                                </center>
+                            </div>
+                            <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.sun)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <center>
+                                    <h5 class="mb-0">الاثنين</h5>
+                                </center>
+                            </div>
+                            <div id="collapseTwo" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.mon)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                <center>
+                                    <h5 class="mb-0">الثلاثاء</h5>
+                                </center>
+                            </div>
+                            <div id="collapseThree" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.tue)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <center>
+                                    <h5 class="mb-0">الاربعاء</h5>
+                                </center>
+                            </div>
+                            <div id="collapseFour" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.wen)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <center>
+                                    <h5 class="mb-0">الخميس</h5>
+                                </center>
+                            </div>
+                            <div id="collapseFive" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.thu)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                <center>
+                                    <h5 class="mb-0">الجمعة</h5>
+                                </center>
+                            </div>
+                            <div id="collapseSix" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.fri)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingSeven" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                <center>
+                                    <h5 class="mb-0">السبت</h5>
+                                </center>
+                            </div>
+                            <div id="collapseSeven" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @foreach (var item in ViewBag.sat)
+                                    {
+
+                                        <div class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+                                                        @item.Cours.Name
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.Class.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">
+
+                                                        @item.User.Name
+                                                    </span>
+                                                </div>
+                                                <div class="fc-content">
+                                                    <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                </div>
+                                                <div class="fc-resizer fc-end-resizer">
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="calendar fc fc-unthemed fc-ltr ShowPC"
+                         data-toggle="calendar"
+                         id="calendar">
+                        <div class="fc-toolbar fc-header-toolbar">
+                            <div class="fc-left"></div><div class="fc-right">
+                            </div><div class="fc-center">
+                            </div><div class="fc-clear">
+                            </div>
+                        </div>
+
+
+                        <div class="fc-view-container" style="min-width:initial">
+                            <div class="fc-view fc-month-view fc-basic-view" style="">
+                                <table class="">
+
+                                    <tr>
+                                        <td class="fc-head-container fc-widget-header">
+                                            <div class="fc-row fc-widget-header">
+                                                <table class="">
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الاحد</span>
+                                                        </th>
+
+
+
+                                                        @foreach (var item in ViewBag.sun)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class=" fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                 
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.sun).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.sun).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الاثنين</span>
+                                                        </th>
+                                                        @foreach (var item in ViewBag.mon)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                               
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+                                                        @if (((IEnumerable<dynamic>)ViewBag.mon).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.mon).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الثلاثاء</span>
+                                                        </th>
+
+                                                        @foreach (var item in ViewBag.tue)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                 
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.tue).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.tue).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الاربعاء</span>
+                                                        </th>
+                                                        @foreach (var item in ViewBag.wen)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                 
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+
+
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.wen).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.wen).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الخميس</span>
+                                                        </th>
+                                                        @foreach (var item in ViewBag.thu)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.thu).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.thu).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>الجمعة</span>
+                                                        </th>
+                                                        @foreach (var item in ViewBag.fri)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name  -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                 
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.fri).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.fri).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th class="fc-day-header fc-widget-header fc-sun">
+                                                            <span>السبت</span>
+                                                        </th>
+                                                        @foreach (var item in ViewBag.sat)
+                                                        {
+                                                            <td class="fc-event-container">
+                                                                <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-blue fc-draggable fc-resizable" style=" text-align: right;">
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+                                                                            @item.Cours.Name
+
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">
+
+                                                                            @item.Class.Name -    @item.User.Name
+                                                                        </span>
+                                                                    </div>
+                                                                  
+                                                                    <div class="fc-content">
+                                                                        <span class="fc-title">  @item.FinishAT -@item.StratsAt</span>
+                                                                    </div>
+                                                                    <div class="fc-resizer fc-end-resizer">
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        }
+
+
+
+                                                        @if (((IEnumerable<dynamic>)ViewBag.sat).Count() < 10)
+                                                        {
+
+
+
+                                                            for (int i = 0; i < (10 - ((IEnumerable<dynamic>)ViewBag.sat).Count()); i++)
+                                                            {
+                                                                <td class="fc-event-container"></td>
+
+                                                            }
+                                                        }
+
+                                                    </tr>
+
+
+
+
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modal - Add new event -->
+            <!--* Modal header *-->
+            <!--* Modal body *-->
+            <!--* Modal footer *-->
+            <!--* Modal init *-->
+            <div class="modal fade" id="new-event" tabindex="-1" role="dialog" aria-labelledby="new-event-label" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-secondary" role="document">
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form class="new-event--form">
+                                <div class="form-group">
+                                    <label class="form-control-label">Event title</label>
+                                    <input type="text" class="form-control form-control-alternative new-event--title" placeholder="Event Title">
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label class="form-control-label d-block mb-3">Status color</label>
+                                    <div class="btn-group btn-group-toggle btn-group-colors event-tag" data-toggle="buttons">
+                                        <label class="btn bg-info active"><input type="radio" name="event-tag" value="bg-info" autocomplete="off" checked=""></label>
+                                        <label class="btn bg-warning"><input type="radio" name="event-tag" value="bg-warning" autocomplete="off"></label>
+                                        <label class="btn bg-danger"><input type="radio" name="event-tag" value="bg-danger" autocomplete="off"></label>
+                                        <label class="btn bg-success"><input type="radio" name="event-tag" value="bg-success" autocomplete="off"></label>
+                                        <label class="btn bg-default"><input type="radio" name="event-tag" value="bg-default" autocomplete="off"></label>
+                                        <label class="btn bg-primary"><input type="radio" name="event-tag" value="bg-primary" autocomplete="off"></label>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="new-event--start" value="2020-06-06">
+                                <input type="hidden" class="new-event--end" value="2020-06-06">
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary new-event--add">Add event</button>
+                            <button type="button" class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal - Edit event -->
+            <!--* Modal body *-->
+            <!--* Modal footer *-->
+            <!--* Modal init *-->
+            <div class="modal fade" id="edit-event" tabindex="-1" role="dialog" aria-labelledby="edit-event-label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-secondary" role="document">
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form class="edit-event--form">
+                                <div class="form-group">
+                                    <label class="form-control-label">Event title</label>
+                                    <input type="text" class="form-control form-control-alternative edit-event--title" placeholder="Event Title">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label d-block mb-3">Status color</label>
+                                    <div class="btn-group btn-group-toggle btn-group-colors event-tag mb-0" data-toggle="buttons">
+                                        <label class="btn bg-info active"><input type="radio" name="event-tag" value="bg-info" autocomplete="off" checked=""></label>
+                                        <label class="btn bg-warning"><input type="radio" name="event-tag" value="bg-warning" autocomplete="off"></label>
+                                        <label class="btn bg-danger"><input type="radio" name="event-tag" value="bg-danger" autocomplete="off"></label>
+                                        <label class="btn bg-success"><input type="radio" name="event-tag" value="bg-success" autocomplete="off"></label>
+                                        <label class="btn bg-default"><input type="radio" name="event-tag" value="bg-default" autocomplete="off"></label>
+                                        <label class="btn bg-primary"><input type="radio" name="event-tag" value="bg-primary" autocomplete="off"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Description</label>
+                                    <textarea class="form-control form-control-alternative edit-event--description textarea-autosize" placeholder="Event Desctiption"></textarea>
+                                    <i class="form-group--bar"></i>
+                                </div>
+                                <input type="hidden" class="edit-event--id">
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" data-calendar="update">Update</button>
+                            <button class="btn btn-danger" data-calendar="delete">Delete</button>
+                            <button class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
